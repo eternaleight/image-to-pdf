@@ -2,7 +2,7 @@
   <img src="https://github.com/user-attachments/assets/4a808643-b165-43bb-9b4d-cf41ab6e7b28" alt="Image-to-PDF Logo" width="300px">
 </p>
 
-## 画像のＰＤＦ化（大量枚数対応）
+## 画像のPDF化（大量枚数対応）
 ### 1. **コードの実行**：
 
 次のようにコマンドライン引数を指定して実行します。
