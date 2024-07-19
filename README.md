@@ -27,6 +27,8 @@ go run main.go -imageFolder="/c/〇〇/inputImage" -batchSize=20 -outputFolder="
 
 ## PDFtkを使用してPDFを結合
 
+### WSLまたはLinux環境での手順
+
 WSLまたはLinux環境でPDFtkを使用して複数のPDFを結合する手順は以下の通りです。
 
 1. **PDFtkのインストール**
@@ -46,6 +48,34 @@ pdftk batch_0.pdf batch_1.pdf batch_2.pdf batch_3.pdf batch_4.pdf batch_5.pdf ba
 ```
 
 これにより、全てのバッチPDFファイルが `combined.pdf` という名前の一つのPDFファイルに結合されます。
+
+### Mac環境での手順
+
+Mac環境でPDFtkを使用して複数のPDFを結合する手順は以下の通りです。
+
+1. **Homebrewのインストール**（インストールされていない場合）
+
+Homebrewは、macOS用のパッケージ管理システムです。インストールされていない場合は、以下のコマンドを実行してインストールします。
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+2. **PDFtkのインストール**
+
+Homebrewを使用してPDFtkをインストールします。
+
+```bash
+brew install pdftk-java
+```
+
+3. **PDFの結合**
+
+生成されたバッチPDFファイルを一つに結合します。以下のコマンドを実行して、複数のPDFファイルを一つのPDFファイルに結合します。
+
+```bash
+pdftk batch_0.pdf batch_1.pdf batch_2.pdf batch_3.pdf batch_4.pdf batch_5.pdf batch_6.pdf batch_7.pdf cat output combined.pdf
+```
 
 ### 結合手順の説明
 
