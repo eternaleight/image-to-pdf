@@ -25,29 +25,7 @@ go run main.go -imageFolder="/c/〇〇/inputImage" -batchSize=20 -outputFolder="
 
 入力画像フォルダ、バッチサイズ、およびアウトプットフォルダをコマンドラインから指定
 
-## PDFtkを使用してPDFを結合
-
-### WSLまたはLinux環境での手順
-
-WSLまたはLinux環境でPDFtkを使用して複数のPDFを結合する手順は以下の通りです。
-
-1. **PDFtkのインストール**
-
-まず、PDFtkがインストールされていない場合はインストールします。
-
-```bash
-sudo apt-get install pdftk
-```
-
-2. **PDFの結合**
-
-生成されたバッチPDFファイルを一つに結合します。以下のコマンドを実行して、複数のPDFファイルを一つのPDFファイルに結合します。
-
-```bash
-pdftk batch_0.pdf batch_1.pdf batch_2.pdf batch_3.pdf batch_4.pdf batch_5.pdf batch_6.pdf batch_7.pdf cat output combined.pdf
-```
-
-これにより、全てのバッチPDFファイルが `combined.pdf` という名前の一つのPDFファイルに結合されます。
+## PDFtkを使用してアウトプットされたPDFを結合
 
 ### Mac環境での手順
 
@@ -102,3 +80,25 @@ pdftk $(ls batch_*.pdf | sort) cat output combined.pdf
 このコマンドは、 `batch_` で始まるすべてのPDFファイルを自動的に結合します。
 
 これで、複数のバッチPDFファイルを一つのPDFファイルに結合することができます。
+
+### WSLまたはLinux環境での手順
+
+WSLまたはLinux環境でPDFtkを使用して複数のPDFを結合する手順は以下の通りです。
+
+1. **PDFtkのインストール**
+
+まず、PDFtkがインストールされていない場合はインストールします。
+
+```bash
+sudo apt-get install pdftk
+```
+
+2. **PDFの結合**
+
+生成されたバッチPDFファイルを一つに結合します。以下のコマンドを実行して、複数のPDFファイルを一つのPDFファイルに結合します。
+
+```bash
+pdftk batch_0.pdf batch_1.pdf batch_2.pdf batch_3.pdf batch_4.pdf batch_5.pdf batch_6.pdf batch_7.pdf cat output combined.pdf
+```
+
+これにより、全てのバッチPDFファイルが `combined.pdf` という名前の一つのPDFファイルに結合されます。
