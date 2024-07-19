@@ -52,7 +52,7 @@ func main() {
 		batchFiles := imageFiles[i:batchEnd]
 
 		pdf := gopdf.GoPdf{}
-		pdf.Start(gopdf.Config{PageSize: gopdf.Rect{W: 595.28, H: 841.89}}) // A4サイズのページ
+		pdf.Start(gopdf.Config{})
 
 		for _, imageFile := range batchFiles {
 			fmt.Printf("Processing file: %s\n", imageFile)
@@ -71,18 +71,9 @@ func main() {
 
 			imgWidth := float64(img.Bounds().Dx())
 			imgHeight := float64(img.Bounds().Dy())
-			pageWidth := 595.28
-			pageHeight := 841.89
 
-			// 画像をページに合わせてスケーリング
-			scale := min(pageWidth/imgWidth, pageHeight/imgHeight)
-			scaledWidth := imgWidth * scale
-			scaledHeight := imgHeight * scale
-			offsetX := (pageWidth - scaledWidth) / 2
-			offsetY := (pageHeight - scaledHeight) / 2
-
-			pdf.AddPage()
-			err = pdf.Image(imageFile, offsetX, offsetY, &gopdf.Rect{W: scaledWidth, H: scaledHeight})
+			pdf.AddPageWithOption(gopdf.PageOption{PageSize: &gopdf.Rect{W: imgWidth, H: imgHeight}})
+			err = pdf.Image(imageFile, 0, 0, &gopdf.Rect{W: imgWidth, H: imgHeight})
 			if err != nil {
 				fmt.Println("Error adding image to PDF:", err)
 				continue
@@ -103,11 +94,4 @@ func main() {
 	}
 
 	fmt.Println("All batches processed. Please use a PDF merging tool to combine the batch PDFs into a single file.")
-}
-
-func min(a, b float64) float64 {
-	if a < b {
-		return a
-	}
-	return b
 }
