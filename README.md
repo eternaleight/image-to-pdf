@@ -2,7 +2,8 @@
   <img src="https://github.com/user-attachments/assets/4a808643-b165-43bb-9b4d-cf41ab6e7b28" alt="Image-to-PDF Logo" width="300px">
 </p>
 
-## 画像のPDF化（大量枚数対応）
+windowsだと最大600×600のPDFしか標準機能で作れなかったので写真のPDF化（大量枚数 高画質対応）を作成しました。
+## 画像のPDF化
 ### 1. **コードの実行**：
 
 次のようにコマンドライン引数を指定して実行します。
