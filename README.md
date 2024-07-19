@@ -156,9 +156,9 @@ pdftk batch_0.pdf batch_1.pdf batch_2.pdf batch_3.pdf batch_4.pdf batch_5.pdf ba
 これにより、全てのバッチPDFファイルが `combined.pdf` という名前の一つのPDFファイルに結合されます。
 
 
-## Homebrewを使用しての手順
+### Homebrewを使用しての手順
 
-### PDFtkをインストールします。
+1. **PDFtkのインストール**
 
 ```bash
 brew install pdftk-java
