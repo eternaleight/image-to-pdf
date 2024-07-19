@@ -154,3 +154,46 @@ pdftk batch_0.pdf batch_1.pdf batch_2.pdf batch_3.pdf batch_4.pdf batch_5.pdf ba
 ```
 
 これにより、全てのバッチPDFファイルが `combined.pdf` という名前の一つのPDFファイルに結合されます。
+
+
+## Homebrewsを使用しての手順
+
+### PDFtkをインストールします。
+
+```bash
+brew install pdftk-java
+```
+
+2. **PDFの結合**
+
+生成されたバッチPDFファイルを一つに結合します。以下のコマンドを実行して、複数のPDFファイルを一つのPDFファイルに結合します。
+
+```bash
+pdftk batch_0.pdf batch_1.pdf batch_2.pdf batch_3.pdf batch_4.pdf batch_5.pdf batch_6.pdf batch_7.pdf cat output combined.pdf
+```
+
+### 結合手順の説明
+
+1. **バッチPDFのリスト**:
+   - 生成されたバッチPDFファイル（ `batch_0.pdf` から `batch_7.pdf` など）をリストアップします。
+
+2. **PDFの結合コマンド**:
+   - `pdftk` コマンドを使用して、リストアップしたPDFファイルを `cat` コマンドで結合し、 `combined.pdf` に出力します。
+
+以下は、すべての手順をまとめた例です。
+
+```bash
+pdftk batch_0.pdf batch_1.pdf batch_2.pdf batch_3.pdf batch_4.pdf batch_5.pdf batch_6.pdf batch_7.pdf cat output combined.pdf
+```
+
+### 追加の手順
+
+もしバッチの数が多く手動でリストアップするのが大変な場合は、以下のようなシェルスクリプトを使用することもできます。
+
+```bash
+pdftk $(ls batch_*.pdf | sort) cat output combined.pdf
+```
+
+このコマンドは、 `batch_` で始まるすべてのPDFファイルを自動的に結合します。
+
+これで、複数のバッチPDFファイルを一つのPDFファイルに結合することができます。
