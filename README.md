@@ -86,7 +86,7 @@ func main() {
 		batchFiles := imageFiles[i:batchEnd]
 
 		pdf := gopdf.GoPdf{}
-		pdf.Start(gopdf.Config{PageSize: gopdf.Rect{W: 595.28, H: 841.89}})
+		pdf.Start(gopdf.Config{})
 
 		for _, imageFile := range batchFiles {
 			fmt.Printf("Processing file: %s\n", imageFile)
@@ -95,7 +95,7 @@ func main() {
 				fmt.Println("Error opening image file:", err)
 				continue
 			}
-			img, format, err := image.Decode(file)
+			img, _, err := image.Decode(file)
 			if err != nil {
 				fmt.Println("Error decoding image file:", err)
 				file.Close()
@@ -103,17 +103,17 @@ func main() {
 			}
 			file.Close()
 
-			width := float64(img.Bounds().Dx()) * 0.75
-			height := float64(img.Bounds().Dy()) * 0.75
+			imgWidth := float64(img.Bounds().Dx())
+			imgHeight := float64(img.Bounds().Dy())
 
-			pdf.AddPageWithOption(gopdf.PageOption{PageSize: &gopdf.Rect{W: width, H: height}})
-			err = pdf.Image(imageFile, 0, 0, &gopdf.Rect{W: width, H: height})
+			pdf.AddPageWithOption(gopdf.PageOption{PageSize: &gopdf.Rect{W: imgWidth, H: imgHeight}})
+			err = pdf.Image(imageFile, 0, 0, &gopdf.Rect{W: imgWidth, H: imgHeight})
 			if err != nil {
 				fmt.Println("Error adding image to PDF:", err)
 				continue
 			}
 
-			fmt.Printf("Added %s image to PDF: %s\n", format, imageFile)
+			fmt.Printf("Added image to PDF: %s\n", imageFile)
 		}
 
 		batchOutputPDF := filepath.Join(*outputFolder, fmt.Sprintf("batch_%d.pdf", batchNumber))
